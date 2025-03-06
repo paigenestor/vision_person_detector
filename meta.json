@@ -1,0 +1,17 @@
+{
+  "$schema": "https://dl.viam.dev/module.schema.json",
+  "module_id": "paige-nestor:vision_person_detector",
+  "visibility": "private",
+  "url": "https://github.com/paigenestor/vision_person_detector",
+  "description": "Modular vision service: person_detector",
+  "models": [
+    {
+      "api": "rdk:service:vision",
+      "model": "paige-nestor:vision_person_detector:person_detector",
+      "short_description": "This module implements the Viam Vision service and returns true if a person object is detected",
+      "markdown_link": "README.md#model-paige-nestorvision_person_detectorperson_detector"
+    }
+  ],
+  "entrypoint": "./run.sh",
+  "first_run": ""
+}
