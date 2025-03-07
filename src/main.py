@@ -20,19 +20,21 @@ async def connect():
         # api_key=API_KEY,
         # api_key_id=API_KEY_ID,
         # Use below when testing with API key hardcoded
-        api_key='970dh3dl1z3yxfobo9q09k7fmz605ckd',
-        api_key_id='b89b7caf-bd02-4cca-bbaf-e763f32c122c'
+        # Replace "<API-KEY>" (including brackets) with your machine's api key 
+        api_key='<API-KEY>',
+        # Replace "<API-KEY-ID>" (including brackets) with your machine's api key id
+        api_key_id='<API-KEY-ID>'
     )
     return await RobotClient.at_address('paige-machine-main.fyqbtxpbvl.viam.cloud', opts)
 
 async def main():
     machine = await connect()
 
-    # vision_person_detector
-    vision_person_detector = VisionClient.from_robot(machine, "vision_person_detector")
-    person_detected = 0  # initialize first
-    # Get detections from camera
-    person_detector_return_value = await vision_person_detector.get_detections_from_camera("my_camera")
+    person_detected = 0  # initialize first and set to false
+    # Create vision_person_detector  
+    vision_person_detector = PersonDetector.from_robot(machine, "vision_person_detector")
+    # Get detections from camera where "my_camera" is the name of your connect
+    person_detector_return_value = await vision_person_detector.get_detections_from_camera("my_camera")    
 
     # Check if there are any detections
     if person_detector_return_value:
@@ -45,7 +47,7 @@ async def main():
     print(f"person_detected: {person_detected}")
 
 
-    # Don't forget to close the machine when you're done!
+    # close machine 
     await machine.close()
 
 if __name__ == '__main__':
